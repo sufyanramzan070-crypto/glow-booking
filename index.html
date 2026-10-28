@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6d28d9">
+  <title>Glow Studio Booking</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 24px 14px;
+      font-family: Arial, sans-serif;
+      background: #f5f3ff; color: #241b35;
+    }
+    main {
+      max-width: 440px; margin: 20px auto;
+      padding: 24px; background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px #26144c12;
+    }
+    h1 { margin-top: 0; color: #6d28d9; }
+    p { line-height: 1.5; color: #625a70; }
+    label { display: block; margin-top: 16px; font-weight: bold; }
+    input, select, button {
+      width: 100%; padding: 13px; margin-top: 7px;
+      border: 1px solid #ddd6e8; border-radius: 10px;
+      font: inherit;
+    }
+    button {
+      border: 0; margin-top: 22px; background: #6d28d9;
+      color: white; font-weight: bold; cursor: pointer;
+    }
+    small { display: block; margin-top: 14px; color: #756b80; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Glow Studio</h1>
+    <p>Choose a service and request your appointment.</p>
+
+    <form id="bookingForm">
+      <label for="customer">Your name</label>
+      <input id="customer" required placeholder="Enter your name">
+
+      <label for="service">Choose service</label>
+      <select id="service">
+        <option>Haircut</option>
+        <option>Hair styling</option>
+        <option>Facial</option>
+        <option>Makeup</option>
+      </select>
+
+      <label for="date">Preferred date</label>
+      <input id="date" type="date" required>
+
+      <label for="time">Preferred time</label>
+      <input id="time" type="time" required>
+
+      <button type="submit">Request on WhatsApp</button>
+    </form>
+
+    <small>Demo only. Replace the salon name and phone number before using it for a real business.</small>
+  </main>
+
+  <script>
+    document.getElementById("bookingForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("customer").value.trim();
+      const service = document.getElementById("service").value;
+      const date = document.getElementById("date").value;
+      const time = document.getElementById("time").value;
+
+      // Replace this with the business WhatsApp number:
+      // country code + number, digits only; no + or spaces.
+      const phone = "923001234567";
+
+      const message =
+        "Hello Glow Studio! I would like to request an appointment." +
+        "\nName: " + name +
+        "\nService: " + service +
+        "\nPreferred date: " + date +
+        "\nPreferred time: " + time;
+
+      window.open(
+        "https://wa.me/" + phone + "?text=" + encodeURIComponent(message),
+        "_blank"
+      );
+    });
+  </script>
+</body>
+</html>
